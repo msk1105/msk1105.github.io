@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-![]({{ site.baseurl }}/images/me.png) 
+![]({{ site.baseurl }}/images/me.png =100x40) 
 
 ### More Information
 
