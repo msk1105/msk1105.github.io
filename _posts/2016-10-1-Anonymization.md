@@ -2,9 +2,7 @@
 layout: post
 title: Anonymization, word vectors and O(n) model
 ---
-I recently came across a project that made me to think about the connections between these concepts, which I find interesting and would like to share about.
-
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+Automated anonymization of documents is not a new subject in text processing. It is one of the most important research subjects related to medical data where [strict guidance](http://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/) is provided. However, it is by no means an easy task to tackle especially for free-style text documents. Various methods and tools have been developed [1,2,3]. In this post, I am interested in using the vector embedding [4,5] approach. I arrived at some interesting results and some hints from theoretical physics, which I would like share about. 
 
 ![_config.yml]({{ site.baseurl }}/images/config.png)
 
