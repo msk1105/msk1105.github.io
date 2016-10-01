@@ -13,8 +13,7 @@ Recently, I worked on a consultant project, partnered with Bonfire, a company ba
 
 It is by no means as simple as search and replace. In writing the documents, users tend to refer themselves in various ways that cannot be easily inducted. 
 
-<img src="{{ site.baseurl }}/images/utopia.png" alt="alt text" height="40px">
+<img src="{{ site.baseurl }}/images/utopia.png" alt="alt text" height="100px">
 
-![_config.yml]({{ site.baseurl }}/images/utopia.png)
 
 
