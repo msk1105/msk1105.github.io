@@ -8,7 +8,7 @@ permalink: /about/
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+My interest lies somewhere among physics, parallel computing, algorithm and data science/engineer. 
 
 ### Contact me
 

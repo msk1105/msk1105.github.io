@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Anonymization, word vectors and O(n) model
