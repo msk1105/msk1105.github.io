@@ -76,16 +76,20 @@ The physical implication here is straightforward: every tiny magnect goes under 
 
 $$
 \begin{equation}
- \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{\mu} }),
+ \sum_w \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{\mu} }),
  \end{equation}
 $$ 
 
-which I called a **polarization** term,to the skip-gram model.
+which I called a **polarization** term, to the skip-gram model.
 
 ### Improvement: PolarizedText
 
+To integrate the polarization term (Eq. (4)), I had to modify the source code of fastText and made a new repository called [PolarizedText](). PolarizedText puts each document label into its unique dimension and applies an "external field" to shaddow the text. This avoids the label confusion that might happen during the context binding. Furthermore, the separations of the unique words are maximized since they are orthogonal. 
 
-I slightly modified the source code of fastText to add the 
+To validate the algorithm, I hand labeled about 300 documents for the words that are subject to removal. The ROC curves of various algorithms are compared below
+
+<center> <img src="{{ site.baseurl }}/images/roc.png" alt="alt text" width="600px"> </center>
+
 
 
 
