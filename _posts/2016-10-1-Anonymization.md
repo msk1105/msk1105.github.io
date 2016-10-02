@@ -91,8 +91,10 @@ To validate the algorithm, I hand labeled about 300 documents for the words that
 <center> <img src="{{ site.baseurl }}/images/roc.png" alt="alt text" width="600px"> </center>
 
 
+-----
 
 [Mikolov13] Tomáš Mikolov, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013b. Distributed representations of words and phrases and their compositionality. In Adv. NIPS
+
 [Bojanowski&Grave 16] P. Bojanowski*, E. Grave*, A. Joulin, T. Mikolov, Enriching Word Vectors with Subword Information, arXiv:1607.04606
 
 
