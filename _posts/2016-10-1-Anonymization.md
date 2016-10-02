@@ -49,3 +49,7 @@ $$
 $$
 
 This is nothing but the one-dimensional [O(n) model]() in statistical physics! The O(n) model or n-vector model is a simplified physics model that explains how macro magnect effect is formed as an effect of grids of tiny magnects (or spins) lining up together. Strong magnect field is formed if all the underlining individual tiny magnets are orientated in the same direction and otherwise if they are randomly orientated. Every tiny magnet is affected by and, at the same time, affecting its neighbors. The physics system will settle around the configuration where the total energy (defined by Eq. (2)) is minimum. Our problem at hand is very similar: we are trying to find a configuration of all the word vectors such that the total "energy" is minimum. 
+
+<center> <img src="{{ site.baseurl }}/images/n-vectors.gif" alt="alt text" height="80px"> </center>
+
+
