@@ -2,7 +2,7 @@
 layout: post
 title: Anonymization, word vectors and O(n) model
 ---
-<center> <img src="http://archive2.cra.org/ccc/files/images/privacy.jpg" alt="alt text" height="300px"> </center>
+<center> <img src="http://archive2.cra.org/ccc/files/images/privacy.jpg" alt="alt text" width="800px"> </center>
 Automated anonymization of documents one important research subject, especially in medical data where creteria [strict guidance](http://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/) are strictly guided. In general, it is a difficult task, and even more so for data outside of medical domain due to the lack of specialized tools. In this post, I explored the possibility of using the [vector embedding](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [Mikolov 13] approach to anonymize non-medical documents. I arrived at some interesting results and some hints from theoretical physics, which I would like share about. 
 
 
