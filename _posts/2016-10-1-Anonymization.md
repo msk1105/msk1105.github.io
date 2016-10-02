@@ -34,7 +34,7 @@ $$
 
 where $\boldsymbol{v}$ is a mapping from the vocabulary to a vector space, which is what we try to learn. $\langle w,c\rangle$ means a neighbor pair. The second term in the squared brackets is the negative sampling where $\mathcal{N}_c$ are the set of random negative samples that are not $c$. It mostly serves like a regularization term. 
 
-The context binding here provides a way to separate the private words from common words. This can be visualized in the cartoon below. Intuitively, when a common word shows up in the multiple contexts, the binding will pull it away from from any of the contexts, as a compromise to minimize the negative log-likelyhood. As a result, only words that are unique will be binded closer in the vector space. 
+The context binding here provides a way to separate the private words from common words. This can be visualized in the cartoon below. Intuitively, when a common word shows up in multiple contexts, the binding will pull it away from any of the contexts, as a compromise to minimize the negative log-likelyhood. As a result, only words that are unique will be binded closer in the vector space. 
 
 <center> <img src="{{ site.baseurl }}/images/wordvec.gif" alt="alt text" width="800px"> </center>
 
@@ -54,16 +54,27 @@ The O(n) model or n-vector model is a simplified physics model that explains how
 
 <center> <img src="{{ site.baseurl }}/images/nvectors.png" alt="alt text" height="80px"> </center>
 
-Some additional notes: the special case of O(n) model with $n=1$ is called [Ising model](https://en.wikipedia.org/wiki/Ising_model), which is one of the most inspiring models that brings us rich insights into the nature of strong coupling systems, such as the fundamental force among subatomic particles: [quarks](https://en.wikipedia.org/wiki/Quark) and [gluons](https://en.wikipedia.org/wiki/Gluon).
+Some additional notes: the special case of O(n) model with $n=1$ is called [Ising model](https://en.wikipedia.org/wiki/Ising_model), which is one of the most inspiring models that brought us rich insights into the nature of strong coupling systems, such as the fundamental force among subatomic particles: [quarks](https://en.wikipedia.org/wiki/Quark) and [gluons](https://en.wikipedia.org/wiki/Gluon).
 
 ### Implementation: FastText
 
-[FastText](https://github.com/facebookresearch/fastText) is a open source tool developed by [Facebook AI](https://research.facebook.com/ai/) which is based on the skip-gram model that we just discussed, but adding an important feature that is highly relevant to our interest here: the subword information, based on [an character-based n-gram algorithm](https://arxiv.org/pdf/1607.04606v1.pdf) [Bojanowski&Grave 16] that they recently published. Its implication here is two-folded. One, it largely reduces the cases of out-of-vocabulary. Second, it can bind words or typos that are morphologically similar. It achieves some functionality of "regular expressions", which is crucial for our anonymization task. 
+[FastText](https://github.com/facebookresearch/fastText) is a open source tool developed by [Facebook AI](https://research.facebook.com/ai/) which is based on the skip-gram model that we just discussed, but adding an important feature that is highly relevant to our interest here: the subword information, based on [an character-based n-gram algorithm](https://arxiv.org/pdf/1607.04606v1.pdf) [Bojanowski&Grave 16] that they recently published. Its implication here is two-folded. One, it largely reduces the cases of out-of-vocabulary. Second, it can bind words or typos that are morphologically similar, and hence achieve some functionality of "regular expressions", which is crucial for our anonymization task. 
 
-I simply concated the entire set of documents into one hot word vector, then feeded it to fastText to learn the vector representation. 
+I concated the entire set of documents into one hot word vector, after some text preprocessing and clearning, then feeded it to fastText to learn the vector representation. Then given a trunk of text, I will be able to calculate the angle separation between any word in the text to a given term, say "Utopia University", which can be taken as a score of its closeness to such term. It turned out that such a simple method worked very well. With a fairy low false positive rate (3~4%), I can identify 75~80% of the private words. 
+
+However, there is a caveat in this approach. Since we only use context binding, some word vectors that belong to different groups may end up being close because their large overlap in the context. There is no guarantee that this will not happen. 
+
+Actually, we leave out one important term of O(n) model in Eq. (2). With the presence of external magnectic field, the total energy should be 
+
+$$
+\begin{equation}
+E = - \sum_{\langle w, c\rangle} \boldsymbol{v}_w \cdot \boldsymbol{v}_c - \sum_{w} \boldsymbol{v}_w \cdot \mu
+$$
 
 
-### An improvement: PolarizedText
+### Improvement: PolarizedText
+
+
 
 
 
