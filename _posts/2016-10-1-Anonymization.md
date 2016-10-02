@@ -34,5 +34,5 @@ where $\boldsymbol{v}$ is a mapping from the vocabulary to a vector space that w
 
 The context binding here is effective on separating out the 
 
-<center> <img src="{{ site.baseurl }}/images/wordvec.gif" alt="alt text" height="200px"> </center>
+<center> <img src="{{ site.baseurl }}/images/wordvec.gif" alt="alt text" width="800px"> </center>
 
