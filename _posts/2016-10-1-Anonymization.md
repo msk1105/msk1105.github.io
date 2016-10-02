@@ -40,11 +40,11 @@ Equivalently, we can look at a simplified version of Eq. (1), where we ingore th
 
 $$
 \arg \min \sum_w l(w)  
-$$
+$$ <br>
 $$
 =\arg \min \sum_i \big [ \log( e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big ] 
+$$ <br>
 $$
-$$
-\arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
+=\arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
 $$
 
