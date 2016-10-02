@@ -22,7 +22,7 @@ It boils down to how we define private inforamtion. Here is how "privacy" is [de
 
 In my special case, what I am after is the information that exclusively belongs to a particular user, but not others. I need to find a way to segementate the information within a document according the closeness to the user. 
 
-### Word Vectors
+### Word vectors and contex binding
 
 The closeness of information to a given word can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words). For any word $w$ and its context $c$, this is can be achieved by minizing the negative log-likelyhood
 
@@ -38,20 +38,23 @@ The context binding here provides a way to separate the private words from commo
 
 <center> <img src="{{ site.baseurl }}/images/wordvec.gif" alt="alt text" width="800px"> </center>
 
-We can also look at an alternative form of Eq. (1). If we ingore the negative sampling term for a moment, restrict $c$ to be strictly the next word of $w$ and restrict the embedding $\boldsymbol{v}$ to be a unit vector,  Then 
+We can also look at an alternative form of Eq. (1). If we ingore the negative sampling term for a moment, and restrict the embedding $\boldsymbol{v}$ to be a unit vector,  Then 
  
 $$
 \begin{eqnarray}
-& & \arg \min \sum_i \big[ \log(1+ e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big]   \nonumber\\
-& = & \arg \min \sum_i \big [ \log( e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big ] \nonumber\\
-& = & \arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
+& & \arg \min \sum_{\langle w,c\rangle} \big[ \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_{c}}) \big]   \nonumber\\
+& = & \arg \min \sum_{\langle w,c\rangle} \big [ \log( e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_{c}}) \big ] \nonumber\\
+& = & \arg \min (-\sum_{\langle w,c\rangle} \boldsymbol{v}_w \cdot \boldsymbol{v}_{c} ) 
 \end{eqnarray}
 $$ 
 
-This is nothing but the one-dimensional [O(n) model](https://en.wikipedia.org/wiki/N-vector_model) in statistical physics! The O(n) model or n-vector model is a simplified physics model that explains how macro magnect effect is formed as an effect of grids of tiny magnects (or spins) lining up together. Strong magnect field is formed if all the underlining individual tiny magnets are orientated in the same direction and otherwise if they are randomly orientated. Every tiny magnet is affected by and, at the same time, affecting its neighbors. The physics system will settle around the configuration where the total energy (defined by Eq. (2)) is minimum. Our problem at hand is very similar: we are trying to find a configuration of all the word vectors such that the total "energy" is minimum. 
+This is nothing but the one-dimensional [O(n) model](https://en.wikipedia.org/wiki/N-vector_model) in statistical physics! 
+
+The O(n) model or n-vector model is a simplified physics model that explains how macro magnect effect is formed as an effect of grids of tiny magnects (or spins) lining up together. Strong magnect field is formed if all the underlining individual tiny magnets are orientated in the same direction and otherwise if they are randomly orientated. Every tiny magnet is affected by and, at the same time, affecting its neighbors. The physics system will settle around the configuration where the total energy (defined by Eq. (2)) is minimum. Our problem at hand is very similar: we are trying to find a configuration of all the word vectors such that the total "energy" is minimum. 
 
 <center> <img src="{{ site.baseurl }}/images/nvectors.png" alt="alt text" height="80px"> </center>
 
+Some additional notes: the special case of O(n) model with $n=1$ is called [Ising model](https://en.wikipedia.org/wiki/Ising_model), which is one of the most inspiring models that brings us rich insights into the nature of strong coupling systems, such as the fundamental force among subatomic particles: [quarks](https://en.wikipedia.org/wiki/Quark) and [gluons](https://en.wikipedia.org/wiki/Gluon).
 
 ### Implementation: FastText
 
