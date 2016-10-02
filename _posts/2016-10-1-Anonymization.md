@@ -27,7 +27,7 @@ In other words, what we are after is the information that exclusively belongs to
 The closeness of information to an entity can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words) through a negative log-likelyhood (with negative sampling)
 
 $$
-l(w) =  \sum_{c} \big[ \log(1+ e^{-V_w \cdot V_c}) \big ]
+l(w) =  \sum_{c} \big[ \log(1+ e^{-\mathbf{v}_w \cdot \mathbf{v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{ \mathbf{v}_w\cdot \mathbf{v}_n}) \big ]
 $$
 
 
