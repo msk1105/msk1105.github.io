@@ -29,6 +29,7 @@ The closeness of information to an entity can be naturally quantified through [w
 $$
 l(w) =  \sum_{c} \big[ \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{ \boldsymbol{v}_w\cdot \boldsymbol{v}_n}) \big ]
 $$
+
 where \(\boldsymbol{v}\) is a mapping from the vocabulary to a vector space that we are trying to train and $\mathcal{N}_c$ is the negative samples (not \(c\))
 
 
