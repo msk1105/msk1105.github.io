@@ -18,6 +18,7 @@ It is by no means a simple task as search-and-replace. In writing the documents,
 Name entity recognition seems to be a good start. However, I found entity name tagging method did not work very well for documents consisting of unnatural flows of sentences, such as the FAQ style that most of the documents I am dealing with is in. Futhermore, private information is mare than just entities. 
 
 It boils down to how we define private inforamtion. This is how "privacy" is [defined on Wikipedia](https://en.wikipedia.org/wiki/Privacy): 
+
 > Privacy is the ability of an individual or group to ***seclude*** themselves, ...
 
 
