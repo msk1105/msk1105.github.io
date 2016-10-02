@@ -14,30 +14,30 @@ It is by no means a simple task as search-and-replace. In writing the documents,
 
 <center> <img src="{{ site.baseurl }}/images/utopia.png" alt="alt text" height="120px"> </center>
 
-Name entity recognition seems to be a good start. However, entity name tagging method is not working very well for documents consisting of unnatural flows of sentences, such as the FAQ style of writing that most of my documents is in. Futhermore, private information is mare than just entities. 
+Name entity recognition seems to be a good start. However, entity name tagging method is not working very well for documents consisting of unnatural flows of sentences, such as the FAQ style of writing that most of my documents is in. Futhermore, private information is more than just entities. 
 
-It boils down to how we define private inforamtion. This is how "privacy" is [defined on Wikipedia](https://en.wikipedia.org/wiki/Privacy): 
+It boils down to how we define private inforamtion. Here is how "privacy" is [defined on Wikipedia](https://en.wikipedia.org/wiki/Privacy): 
 
 > Privacy is the ability of an individual or group to ***seclude*** themselves, ...
 
-In other words, what we are after is the information that exclusively belongs to an given entity, but not others.
+In my special case, what I am after is the information that exclusively belongs to a particular user, but not others. I need to find a way to segementate the information within a document. 
 
 ### Word Vectors
 
-The closeness of information to an entity can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words). For any word $w$ and its context $c$, we try to minize the negative log-likelyhood (with negative sampling)
+The closeness of information to a user can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words). For any word $w$ and its context $c$, this is can be achieved by minizing the negative log-likelyhood
 
 $$
 l(w) =  \sum_{c} \big[ \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{ \boldsymbol{v}_w\cdot \boldsymbol{v}_n}) \big ] 
 $$
 
-where $\boldsymbol{v}$ is a mapping from the vocabulary to a vector space that we are trying to train and $\mathcal{N}_c$ are the negative samples (not $c$). 
+where $\boldsymbol{v}$ is a mapping (that we are trying to learn) from the vocabulary to a vector space. The second term in the squared brackets is the negative sampling where $\mathcal{N}_c$ are the set of random negative samples that are not $c$. 
 
-The context binding here can effectively separate out the non-identifying words (words that also show up in the contexts of different entities) and group the private words. Intuitively, a non-identifying word will not be too close to any group of private words.
+The context binding here provides a way to separate the private words and common words (words that are not unique to a user). The reason can be visualized in the cartoon below. Intuitively, the effect of binding a common word closer to multiple users it belongs to is that it will conpromise somewhere in the middle and hence be not close to any of them in the vector space. 
 
 <center> <img src="{{ site.baseurl }}/images/wordvec.gif" alt="alt text" width="800px"> </center>
 
-Equivalently, we can look at a simplified version of Eq. (1), where we ingore the negative sampling for a moment and restrict $c$ to be strictly the next word of $w$. Then 
-
+We can also look at an alternative form of Eq. (1). If we ingore the negative sampling term for a moment, restrict $c$ to be strictly the next word of $w$ and restrict the embedding $\boldsymbol{v}$ is only a unit vector,  Then 
+ 
 $$
 \arg \min \sum_w l(w)  
 $$ <br>
@@ -48,3 +48,4 @@ $$
 =\arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
 $$
 
+This is just the one-dimensional [O(n) model] without the external magnect field in physics! 
