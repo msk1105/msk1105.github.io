@@ -38,9 +38,13 @@ The context binding here can effectively separate out the non-identifying words 
 
 Equivalently, we can look at a simplified version of Eq. (1), where we ingore the negative sampling for a moment and restrict $c$ to be strictly the next word of $w$. Then 
 
-\begin{align}
-&& \arg \min \sum_w l(w)  \nonumber \\
-&=& \arg \min \sum_i \big [ \log( e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big ] \nonumber \\
-&=& \arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
-\begin{align}
+$$
+\arg \min \sum_w l(w)  
+$$
+$$
+=\arg \min \sum_i \big [ \log( e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big ] 
+$$
+$$
+\arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
+$$
 
