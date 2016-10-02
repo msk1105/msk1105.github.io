@@ -41,11 +41,11 @@ The context binding here provides a way to separate the private words from commo
 We can also look at an alternative form of Eq. (1). If we ingore the negative sampling term for a moment, restrict $c$ to be strictly the next word of $w$ and restrict the embedding $\boldsymbol{v}$ is only a unit vector,  Then 
  
 $$
-\begin{align}
+\begin{eqnarray}
 && \arg \min \sum_w \big[ \log(1+ e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big]   \\
 & = & \arg \min \sum_i \big [ \log( e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big ] \\
 & = & \arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
-\end{align}
+\end{eqnarray}
 $$ 
 
 This is nothing but the one-dimensional [O(n) model](https://en.wikipedia.org/wiki/N-vector_model) in statistical physics! The O(n) model or n-vector model is a simplified physics model that explains how macro magnect effect is formed as an effect of grids of tiny magnects (or spins) lining up together. Strong magnect field is formed if all the underlining individual tiny magnets are orientated in the same direction and otherwise if they are randomly orientated. Every tiny magnet is affected by and, at the same time, affecting its neighbors. The physics system will settle around the configuration where the total energy (defined by Eq. (2)) is minimum. Our problem at hand is very similar: we are trying to find a configuration of all the word vectors such that the total "energy" is minimum. 
