@@ -24,7 +24,11 @@ In other words, what we are after is the information that exclusively belongs to
 
 ### Word Vectors
 
-The closeness of information to an entity can be naturally represented by word vectors. 
+The closeness of information to an entity can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [Mikolov 13]. 
+
+$$
+a^2 + b^2 = c^2
+$$
 
 
 
