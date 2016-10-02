@@ -20,26 +20,28 @@ It boils down to how we define private inforamtion. Here is how "privacy" is [de
 
 > Privacy is the ability of an individual or group to ***seclude*** themselves, ...
 
-In my special case, what I am after is the information that exclusively belongs to a particular user, but not others. I need to find a way to segementate the information within a document. 
+In my special case, what I am after is the information that exclusively belongs to a particular user, but not others. I need to find a way to segementate the information within a document according the closeness to the user. 
 
 ### Word Vectors
 
-The closeness of information to a user can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words). For any word $w$ and its context $c$, this is can be achieved by minizing the negative log-likelyhood
+The closeness of information to a given word can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words). For any word $w$ and its context $c$, this is can be achieved by minizing the negative log-likelyhood
 
 $$
-l(w) =  \sum_{c} \big[ \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{ \boldsymbol{v}_w\cdot \boldsymbol{v}_n}) \big ] 
+\begin{equation}
+l(w) =  \sum_{c} \big[ \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{ \boldsymbol{v}_w\cdot \boldsymbol{v}_n}) \big ]
+\end{equation} 
 $$
 
-where $\boldsymbol{v}$ is a mapping (that we are trying to learn) from the vocabulary to a vector space. The second term in the squared brackets is the negative sampling where $\mathcal{N}_c$ are the set of random negative samples that are not $c$. 
+where $\boldsymbol{v}$ is a mapping (that we are trying to learn) from the vocabulary to a vector space. The second term in the squared brackets is the negative sampling where $\mathcal{N}_c$ are the set of random negative samples that are not $c$. It mostly serves like a regularization term. 
 
-The context binding here provides a way to separate the private words and common words (words that are not unique to a user). The reason can be visualized in the cartoon below. Intuitively, the effect of binding a common word closer to multiple users it belongs to is that it will conpromise somewhere in the middle and hence be not close to any of them in the vector space. 
+The context binding here provides a way to separate the private words from common words. This can be visualized in the cartoon below. Intuitively, when a common word shows up in the multiple contexts, the binding will pull it away from from any of the contexts, as a compromise to minimize the negative log-likelyhood. As a result, only words that are unique will be binded closer in the vector space. 
 
 <center> <img src="{{ site.baseurl }}/images/wordvec.gif" alt="alt text" width="800px"> </center>
 
 We can also look at an alternative form of Eq. (1). If we ingore the negative sampling term for a moment, restrict $c$ to be strictly the next word of $w$ and restrict the embedding $\boldsymbol{v}$ is only a unit vector,  Then 
  
 $$
-\arg \min \sum_w l(w)  
+\arg \min \sum_w \big[ \log(1+ e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big]  
 $$ <br>
 $$
 =\arg \min \sum_i \big [ \log( e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big ] 
@@ -48,8 +50,19 @@ $$
 =\arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
 $$
 
-This is nothing but the one-dimensional [O(n) model]() in statistical physics! The O(n) model or n-vector model is a simplified physics model that explains how macro magnect effect is formed as an effect of grids of tiny magnects (or spins) lining up together. Strong magnect field is formed if all the underlining individual tiny magnets are orientated in the same direction and otherwise if they are randomly orientated. Every tiny magnet is affected by and, at the same time, affecting its neighbors. The physics system will settle around the configuration where the total energy (defined by Eq. (2)) is minimum. Our problem at hand is very similar: we are trying to find a configuration of all the word vectors such that the total "energy" is minimum. 
+This is nothing but the one-dimensional [O(n) model](https://en.wikipedia.org/wiki/N-vector_model) in statistical physics! The O(n) model or n-vector model is a simplified physics model that explains how macro magnect effect is formed as an effect of grids of tiny magnects (or spins) lining up together. Strong magnect field is formed if all the underlining individual tiny magnets are orientated in the same direction and otherwise if they are randomly orientated. Every tiny magnet is affected by and, at the same time, affecting its neighbors. The physics system will settle around the configuration where the total energy (defined by Eq. (2)) is minimum. Our problem at hand is very similar: we are trying to find a configuration of all the word vectors such that the total "energy" is minimum. 
 
 <center> <img src="{{ site.baseurl }}/images/nvectors.png" alt="alt text" height="80px"> </center>
+
+
+### The implementation using FastText
+
+[FastText](https://github.com/facebookresearch/fastText) is a open source tool developed by [Facebook AI](https://research.facebook.com/ai/) which is based on the skip-gram model we just discussed, but adding an important feature that is highly relevant to our interest here: the subword information, based on [an algorithm](https://arxiv.org/pdf/1607.04606v1.pdf) they recently published. Its implication here is two-folded. One, it largely reduces the occassions of out-of-vocabulary. Second, it connects morphologically similar words or even typos. It in part achieves the functionality of "regular expressions", which is crucial for our anonymization task. 
+
+I simply concated the entire set of documents into one hot word vector, then feeded it to fastText to learn the vector representation. 
+
+
+### An improvement: PolarizedText
+
 
 
