@@ -10,11 +10,11 @@ Automated anonymization of documents is one important research subject, especial
 
 Recently, I worked on a consultant project as a [Insight Data Science](http://insightdatascience.com/) fellow, partnered with [Bonfire](http://gobonfire.com), a company based in Ontario, whose main product is a website that helps organizations (universities, hospitals, etc) to setup their procurement processes. Public purchasing often involves some very tedious and tiresome procedures, especially the very early step of preparing a bunch of documents (in jargons: [Request For Proposals](https://en.wikipedia.org/wiki/Request_for_proposal), or RFPs). Such a pain can be partially reduced if existing documents on similar purchases can be reused by different users. However, for privacy concern, this requires user identifying information in these documents to be removed. My major goal is to **anonymize the approximately 200,000 documents** produced by a couple hundres of users. 
 
-It is by no means a simple task as search-and-replace. In writing the documents, users tend to refer themselves in various ways that cannot be easily inducted. For example, users may mention their building names, street names or even years they were founded. This information, in the context, can be easily used to identify the users, as in the example shown below.
+It is by no means a simple task as search-and-replace. In writing the documents, users tend to refer themselves in various ways that cannot be easily inducted. For example, users may mention their building names, street names or even years they were founded, like in the example below.
 
 <center> <img src="{{ site.baseurl }}/images/utopia.png" alt="alt text" height="120px"> </center>
 
-Name entity recognition seems to be a good start. However, I found entity name tagging method did not work very well for documents consisting of unnatural flows of sentences, such as the FAQ style that most of the documents I am dealing with is in. Futhermore, private information is mare than just entities. 
+Name entity recognition seems to be a good start. However, entity name tagging method is not working very well for documents consisting of unnatural flows of sentences, such as the FAQ style of writing that most of my documents is in. Futhermore, private information is mare than just entities. 
 
 It boils down to how we define private inforamtion. This is how "privacy" is [defined on Wikipedia](https://en.wikipedia.org/wiki/Privacy): 
 
@@ -24,10 +24,10 @@ In other words, what we are after is the information that exclusively belongs to
 
 ### Word Vectors
 
-The closeness of information to an entity can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [Mikolov 13]. 
+The closeness of information to an entity can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words) through a negative log-likelyhood (with negative sampling)
 
 $$
-a^2 + b^2 = c^2
+ l(w) =  \sum_{c} \big[ \log(1+ e^{-{\bf v}_w \cdot {\bf v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{{\bf v}_w\cdot {\bf v}_n}) \big ]
 $$
 
 
