@@ -24,13 +24,15 @@ In other words, what we are after is the information that exclusively belongs to
 
 ### Word Vectors
 
-The closeness of information to an entity can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words). For any word \(w\) and its context \(c\), we try to minize the negative log-likelyhood (with negative sampling)
+The closeness of information to an entity can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words). For any word $w$ and its context $c$, we try to minize the negative log-likelyhood (with negative sampling)
 
 $$
 l(w) =  \sum_{c} \big[ \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{ \boldsymbol{v}_w\cdot \boldsymbol{v}_n}) \big ]
 $$
 
-where \(\boldsymbol{v}\) is a mapping from the vocabulary to a vector space that we are trying to train and $\mathcal{N}_c$ is the negative samples (not \(c\))
+where $\boldsymbol{v}$ is a mapping from the vocabulary to a vector space that we are trying to train and $\mathcal{N}_c$ are the negative samples (not $c$). 
 
+The context binding here is effective on separating out the 
 
+<center> <img src="{{ site.baseurl }}/images/wordvec.gif" alt="alt text" height="200px"> </center>
 
