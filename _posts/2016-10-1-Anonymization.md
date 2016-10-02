@@ -13,7 +13,7 @@ Recently, I worked on a consultant project, partnered with Bonfire, a company ba
 
 It is by no means a simple task as search-and-replace. In writing the documents, users tend to refer themselves in various ways that cannot be easily inducted. For example, users may mention their building names, street names or even years they were founded. This information, in the context, can be easily used to identify the users. 
 
-<center> <img src="{{ site.baseurl }}/images/utopia.png" alt="alt text" height="40px"> </center>
+<center> <img src="{{ site.baseurl }}/images/utopia.png" alt="alt text" height="100px"> </center>
 
 Name entity recognition seems to be a good start. However, I found entity name tagging method did not work very well for documents consisting of unnatural flows of sentences, such as the FAQ style that most of the documents I am dealing with is in. Futhermore, private information is mare than just entities. 
 
