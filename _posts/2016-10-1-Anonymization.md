@@ -3,14 +3,12 @@ layout: post
 title: Anonymization, word vectors and O(n) model
 ---
 <center> <img src="http://archive2.cra.org/ccc/files/images/privacy.jpg" alt="alt text" width="800px"> </center>
-Automated anonymization of documents one important research subject, especially in medical data where creteria [strict guidance](http://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/) are strictly guided. In general, it is a difficult task, and even more so for data outside of medical domain due to the lack of specialized tools. In this post, I explored the possibility of using the [vector embedding](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [Mikolov 13] approach to anonymize non-medical documents. I arrived at some interesting results and some hints from theoretical physics, which I would like share about. 
+Automated anonymization of documents is one important research subject, especially in the medical area where [creteria](http://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/) are strictly guided. In general, it is a difficult task, and even more so for data outside of medical domain due to the lack of specialized tools. In this post, I explored the possibility of using the [vector embedding](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [Mikolov 13] approach to anonymize non-medical documents. I arrived at some interesting results with hints from theoretical physics, which I would like share about. 
 
 
 ### The project: anonymize text documents
 
-Recently, I worked on a consultant project as a [Insight Data Science](http://insightdatascience.com/) fellow, partnered with [Bonfire](http://gobonfire.com), a company based in Ontario. Their main product is a website that helps organizations (universities, hospitals, etc) to setup their procurement processes. Public purchasing typically involves some very tedious and tiresome procedures, especially the very early step of preparing a bunch of documents (in jargons: Request For Proposals, or RFPs). Such a pain can be partially reduced if existing documents on similar purchases can be reused by different users. However, for privacy concern, this requires user identifying information in these documents to be removed. So this is the main problem I am trying to address: to **anonymize about 200,000 documents** produced by a couple hundres of users. 
-
-### A different approach: word vectors
+Recently, I worked on a consultant project as a [Insight Data Science](http://insightdatascience.com/) fellow, partnered with [Bonfire](http://gobonfire.com), a company based in Ontario, whose main product is a website that helps organizations (universities, hospitals, etc) to setup their procurement processes. Public purchasing often involves some very tedious and tiresome procedures, especially the very early step of preparing a bunch of documents (in jargons: [Request For Proposals](https://en.wikipedia.org/wiki/Request_for_proposal), or RFPs). Such a pain can be partially reduced if existing documents on similar purchases can be reused by different users. However, for privacy concern, this requires user identifying information in these documents to be removed. My major goal is to **anonymize the approximately 200,000 documents** produced by a couple hundres of users. 
 
 It is by no means a simple task as search-and-replace. In writing the documents, users tend to refer themselves in various ways that cannot be easily inducted. For example, users may mention their building names, street names or even years they were founded. This information, in the context, can be easily used to identify the users, as in the example shown below.
 
@@ -22,7 +20,11 @@ It boils down to how we define private inforamtion. This is how "privacy" is [de
 
 > Privacy is the ability of an individual or group to ***seclude*** themselves, ...
 
+In other words, what we are after is the information that exclusively belongs to an given entity, but not others.
 
+### Word Vectors
+
+The closeness of information to an entity can be naturally represented by word vectors. 
 
 
 
