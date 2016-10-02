@@ -27,23 +27,23 @@ In my special case, what I am after is the information that exclusively belongs 
 The closeness of information to a given word can be naturally quantified through [word vectors](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) in the skip-gram model [Mikolov 13]. The algorithm trains a vector representation of the vocabulary by binding the context (neighboring words). For any word $w$ and its context $c$, this is can be achieved by minizing the negative log-likelyhood
 
 $$
-\begin{equation} \label
-l(w) =  \sum_{c} \big[ \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{ \boldsymbol{v}_w\cdot \boldsymbol{v}_n}) \big ]
+\begin{equation} 
+l =  \sum_{\langle w,c\rangle} \big[ \log(1+ e^{-\boldsymbol{v}_w \cdot \boldsymbol{v}_c}) + \sum_{n\in \mathcal{N}_c}\log(1+e^{ \boldsymbol{v}_w\cdot \boldsymbol{v}_n}) \big ]
 \end{equation} 
 $$
 
-where $\boldsymbol{v}$ is a mapping (that we are trying to learn) from the vocabulary to a vector space. The second term in the squared brackets is the negative sampling where $\mathcal{N}_c$ are the set of random negative samples that are not $c$. It mostly serves like a regularization term. 
+where $\boldsymbol{v}$ is a mapping from the vocabulary to a vector space, which is what we try to learn. $\langle w,c\rangle$ means a neighbor pair. The second term in the squared brackets is the negative sampling where $\mathcal{N}_c$ are the set of random negative samples that are not $c$. It mostly serves like a regularization term. 
 
 The context binding here provides a way to separate the private words from common words. This can be visualized in the cartoon below. Intuitively, when a common word shows up in the multiple contexts, the binding will pull it away from from any of the contexts, as a compromise to minimize the negative log-likelyhood. As a result, only words that are unique will be binded closer in the vector space. 
 
 <center> <img src="{{ site.baseurl }}/images/wordvec.gif" alt="alt text" width="800px"> </center>
 
-We can also look at an alternative form of Eq. (1). If we ingore the negative sampling term for a moment, restrict $c$ to be strictly the next word of $w$ and restrict the embedding $\boldsymbol{v}$ is only a unit vector,  Then 
+We can also look at an alternative form of Eq. (1). If we ingore the negative sampling term for a moment, restrict $c$ to be strictly the next word of $w$ and restrict the embedding $\boldsymbol{v}$ to be a unit vector,  Then 
  
 $$
 \begin{eqnarray}
-&& \arg \min \sum_w \big[ \log(1+ e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big]   \\
-& = & \arg \min \sum_i \big [ \log( e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big ] \\
+& & \arg \min \sum_i \big[ \log(1+ e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big]   \nonumber\\
+& = & \arg \min \sum_i \big [ \log( e^{-\boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1}}) \big ] \nonumber\\
 & = & \arg \min (-\sum_i \boldsymbol{v}_i \cdot \boldsymbol{v}_{i+1} ) 
 \end{eqnarray}
 $$ 
@@ -53,9 +53,9 @@ This is nothing but the one-dimensional [O(n) model](https://en.wikipedia.org/wi
 <center> <img src="{{ site.baseurl }}/images/nvectors.png" alt="alt text" height="80px"> </center>
 
 
-### The implementation using FastText
+### Implementation: FastText
 
-[FastText](https://github.com/facebookresearch/fastText) is a open source tool developed by [Facebook AI](https://research.facebook.com/ai/) which is based on the skip-gram model we just discussed, but adding an important feature that is highly relevant to our interest here: the subword information, based on [an algorithm](https://arxiv.org/pdf/1607.04606v1.pdf) they recently published. Its implication here is two-folded. One, it largely reduces the occassions of out-of-vocabulary. Second, it connects morphologically similar words or even typos. It in part achieves the functionality of "regular expressions", which is crucial for our anonymization task. 
+[FastText](https://github.com/facebookresearch/fastText) is a open source tool developed by [Facebook AI](https://research.facebook.com/ai/) which is based on the skip-gram model that we just discussed, but adding an important feature that is highly relevant to our interest here: the subword information, based on [an character-based n-gram algorithm](https://arxiv.org/pdf/1607.04606v1.pdf) [Bojanowski&Grave 16] that they recently published. Its implication here is two-folded. One, it largely reduces the cases of out-of-vocabulary. Second, it can bind words or typos that are morphologically similar. It achieves some functionality of "regular expressions", which is crucial for our anonymization task. 
 
 I simply concated the entire set of documents into one hot word vector, then feeded it to fastText to learn the vector representation. 
 
