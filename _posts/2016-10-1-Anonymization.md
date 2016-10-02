@@ -64,16 +64,20 @@ I concated the entire set of documents into one hot word vector, after some text
 
 However, there is a caveat in this approach. Since we only use context binding, some word vectors that belong to different groups may end up being close because their large overlap in the context. There is no guarantee that this will not happen. 
 
-Actually, we leave out one important term of O(n) model in Eq. (2). With the presence of external magnectic field, the total energy should be 
+Actually, we leave out one important term of O(n) model in Eq. (2). With the presence of external magnectic field $\boldsymbol{\mu}$, the total energy should be 
 
 $$
 \begin{equation}
-E = - \sum_{\langle w, c\rangle} \boldsymbol{v}_w \cdot \boldsymbol{v}_c - \sum_{w} \boldsymbol{v}_w \cdot \mu
+E = - \sum_{\langle w, c\rangle} \boldsymbol{v}_w \cdot \boldsymbol{v}_c - \sum_{w} \boldsymbol{v}_w \cdot \boldsymbol{\mu}
+\end{equation}
 $$
+
+The physical implication is straightforward: every tiny magnect interacts with its neighbors and the external shaddow field at the same time. In our problem here, we are facing the similar situation. The labeled documents are essentially under the shaddow of "external fields", which is missing in the skip-gram model. So inspired by the case in O(n) model, we should add the counterpart in the negative log-likelyhood, to reflect such an effect. 
 
 
 ### Improvement: PolarizedText
 
+I slightly modified the source code of fastText to add the 
 
 
 
