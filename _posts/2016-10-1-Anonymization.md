@@ -86,7 +86,9 @@ which I called a **polarization** term, to the skip-gram model.
 
 To integrate the polarization term (Eq. (4)), I had to modify the source code of fastText and made a new repository called [PolarizedText](https://github.com/ddu1/polarizedtext). PolarizedText puts each document label into its unique dimension and applies an "external field" (the label) to shadow the text. This avoids the label confusion that might happen during the context binding. Furthermore, the separations of the unique words are maximized since they are orthogonal. 
 
-To validate the algorithm, I hand labeled about 300 documents for the words that subject to removal. The ROC curves of various methods are compared below. The curves are obtained by varying the removal threshold (word vector cosine similarity). The difference between the "fasttext(supervised)" and "fasttext(skipgram)" approaches is that the latter enforces context binding while the first doesn't. In a sense, "polarzedtext" synthesizes the two approaches, and the plot indicates that it is beneficial to do so. 
+### Result
+
+To validate the algorithm, I hand labeled about 300 documents for the words that subject to removal. The ROC curves of various methods are compared below. The curves are obtained by varying the removal threshold (word vector cosine similarity). The difference between the "fasttext(supervised)" and "fasttext(skipgram)" approaches is that the latter enforces context binding while the first doesn't. In a sense, "polarzedtext" synthesizes the two approaches, and the plot indicates that it is beneficial to do so. The anonymizer based on PolarizedText outperforms those based on FastText, showing that the polarization step helps the word embedding, due to a reason that is hinted in physics. 
 
 <center> <img src="{{ site.baseurl }}/images/roc.png" alt="alt text" width="600px"> </center>
 
