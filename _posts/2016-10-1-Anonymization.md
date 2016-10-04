@@ -4,6 +4,8 @@ title: "Dental Risk Predictor"
 ---
 <center> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL2JxHKdQjNLC5WFsu-MVkCbybdOOi2fsD4gQnS44x65m72sUO" alt="alt text" width="720px"> </center>
 
+<center> <img src="{{ site.baseurl }}/images/smile_700x420.png" alt="alt text" height="420px"> </center>
+
 
 Automated anonymization of documents is one popular research subject and finds extremely important usage in areas like medical data where privacy is [taken very seriously](http://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/). It is in general a difficult task, and even more so for data outside of medical domain due to the lack of specialized tools. In this post, I explored the possibility of using the [vector embedding](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [Mikolov 13] approach to anonymize general forms of documents. I arrived at some interesting results with hints from statistical physics, which I would like share about. 
 
