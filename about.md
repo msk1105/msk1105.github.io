@@ -7,9 +7,8 @@ permalink: /about/
 ![]({{ site.baseurl }}/images/me.png) 
 
 ### More Information
-
-My interest lies somewhere among physics, parallel computing, algorithm and data science/engineer. 
+I completed my PhD in Physiology at University of Oxford in UK. I have been working as a research scientist to investigate neurobiological mechanisms underlying psychiatric disorders (e.g., ADHD, anxiety) and learning disabilities (e.g., dyslexia, dyscalulcia).
 
 ### Contact me
 
-[dadu@syr.edu](mailto:dadu@syr.edu)
+[makisophiakoyama@gmail.com](mailto:makisophiakoyama@gmail.com)
