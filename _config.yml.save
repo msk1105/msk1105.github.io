@@ -1,4 +1,4 @@
-#
+ #
 # This file contains configuration flags to customize your site
 #
 
@@ -9,7 +9,7 @@ name: Maki S. Koyama
 description:
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://i1.rgstatic.net/ii/profile.image/AS%3A272335693414401@1441941297077_l/Maki_Koyama.png
+avatar:https://i1.rgstatic.net/ii/profile.image/AS%3A272335693414401@1441941297077_l/Maki_Koyama.png
 
 #
 # Flags below are optional
