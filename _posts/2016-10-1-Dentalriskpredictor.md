@@ -7,26 +7,26 @@ title: "Dental Risk Predictor"
 
 In this post, I would like to share results of my machine learning project at [Insight Data Science](http://insightdatascience.com/), as well as discussing their usefulness in dental practice.
 
-I am a research scientist to study [neurodevelpmental disorders](https://en.wikipedia.org/wiki/Neurodevelopmental_disorder), and the idea of my project came from my longstanding interest in translating research findings into clinical practice.  
+I am a research scientist to study [neurodevelopmental disorders](https://en.wikipedia.org/wiki/Neurodevelopmental_disorder), and the idea of my project came from my longstanding interest in translating research findings into clinical practice.  
 
 
 
-## A Problem Inherent in Dental Practice
+# A Problem Inherent in Dental Practice
 
 Dental patients often cancell or do not show up for their appointments, costing dental practices thousands of dollars. One of the reasons for cancellation or no show-up is that patients have **NO PERCEIVED NEED**. 
 
 
 
-## A Potential Solution
+# A Potential Solution
 To correct this problem, dentists can proactively educate patients about potential risks for having dental problems, which will help to fill a gap between their perceived need and the actual need. To provide dentists with a tool for estimaging patients' dental risks, I built models to predict **the probability of present/lost tooth** in each location. Note that most adults have 32 teeth.
 
 
 
-## Building Predictive Models 
+# Building Predictive Models 
 
 A question here is “What features can predict whether or not a patient will lose a permanent tooth in each location?". See the figure below, illustrating the human teeth anatomy. 
 
-<center> <img src="{{ site.baseurl }}/images/teeth_picture.png" alt="alt text" width="300px"> </center>
+<center> <img src="{{ site.baseurl }}/images/teeth_picture.png" alt="alt text" width="200px"> </center>
 
 To solve this problem, I leverage the publicly available dataset, [National Health and Nutrition Examination Survey (NHANES)2007- 2008](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/25505). 
 
@@ -44,7 +44,7 @@ For this analysis, I used
 
 
 
-## Results and Cross Validation
+# Results and Cross Validation
 
 I short, one model including 4 features (income, smoking now, smoking previously, avoided food) yeilded a high classificaiton probability for each of the 32 tooth locations, ranging between. When interpreting the coefficients at face value, **"higher income"** is associated with a higher probability of maintaining a permanent tooth in each location, while "current smoking", "previous smoking", and "avoided food" are associated with a lower probablity of maintaining it. 
 
@@ -55,6 +55,10 @@ To visualize how well a model can distinguish between two classes(tooth present/
 <center> <img src="{{ site.baseurl }}/images/ROC_AUC.png" alt="alt text" width="400px"> </center>
 
 Interestingly, the AUC value is relatively high for each **wisdome tooth** (0.72 ~ 0.75), but the direction of the effect is opposite to other teeth: **"higher income"** and **"having dental insurance"** are associated with a lower probability of maintaining each widsom tooth. This is not surprising considering that those with dental insurance are more likely to go to the dentist and comply with the recommendations, including wisdom teeth extraction.  
+
+
+
+# The Up coming App
 
 Finally, I am now developing an app that allows dentists to collect patients' information to predict potential dental risks. The collected information can be used to constantly update and improve the model(s) through ongoing modifications. This app can gives dentists the ability to educate and motivate patients to maintain dental visits and comply with dental treatment or prevention recommendations. 
 
