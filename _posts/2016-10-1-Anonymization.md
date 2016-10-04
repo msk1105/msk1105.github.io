@@ -2,7 +2,6 @@
 layout: post
 title: "Dental Risk Predictor"
 ---
-<center> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL2JxHKdQjNLC5WFsu-MVkCbybdOOi2fsD4gQnS44x65m72sUO" alt="alt text" width="720px"> </center>
 
 <center> <img src="{{ site.baseurl }}/images/smile_700x420.png" alt="alt text" height="420px"> </center>
 
