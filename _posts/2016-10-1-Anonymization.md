@@ -26,7 +26,7 @@ To correct this problem, dentists can proactively educate patients about potenti
 
 A question here is “What features can predict whether or not a patient will lose a permanent tooth in each location?". See the figure below, illustrating the human teeth anatomy. 
 
-<center> <img src="{{ site.baseurl }}/images/teeth_picture.png" alt="alt text" width="600px"> </center>
+<center> <img src="{{ site.baseurl }}/images/teeth_picture.png" alt="alt text" width="300px"> </center>
 
 To solve this problem, I leverage the publicly available dataset, [National Health and Nutrition Examination Survey (NHANES)2007- 2008](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/25505). 
 
@@ -52,7 +52,7 @@ Now, I test how well my model ("learner") can make a new prediction for data it 
 
 To visualize how well a model can distinguish between two classes(tooth present/absent), I plot a relative operating characteristic curve (ROC), illustrating the cross validation result for the tooth #2. In general, AUC values of 0.70 and higher would be considered strong effects. 
 
-<center> <img src="{{ site.baseurl }}/images/ROC_AUC.png" alt="alt text" width="600px"> </center>
+<center> <img src="{{ site.baseurl }}/images/ROC_AUC.png" alt="alt text" width="400px"> </center>
 
 Interestingly, the AUC value is relatively high for each **wisdome tooth** (0.72 ~ 0.75), but the direction of the effect is opposite to other teeth: **"higher income"** and **"having dental insurance"** are associated with a lower probability of maintaining each widsom tooth. This is not surprising considering that those with dental insurance are more likely to go to the dentist and comply with the recommendations, including wisdom teeth extraction.  
 
