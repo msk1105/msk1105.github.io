@@ -17,9 +17,9 @@ Dental patients often cancell or do not show up for their appointments, costing 
 
 
 # A Potential Solution
-To correct this problem, dentists can proactively educate patients about potential risks for having dental problems, which will help to fill a gap between their perceived need and the actual need. To provide dentists with a tool for estimaging patients' dental risks, I built models to predict **the probability of a tooth being  present or absent** in each tooth location. The figure below illustrates the dental anatomy. Most adults have 32 teeth, including four wisdom teeth.
+To correct this problem, dentists can proactively educate patients about potential risks for having dental problems, which will help to fill a gap between their perceived need and the actual need. To provide dentists with a tool for estimaging patients' dental risks, I built models to predict **the probability of a tooth being  present or absent** in each tooth location, based on patients' demographic and lifesylte information. The figure below illustrates the dental anatomy. Most adults have 32 teeth, including four wisdom teeth.
 
-<center> <img src="{{ site.baseurl }}/images/dental_anatomy.png" alt="alt text" width="200px"> </center>
+<center> <img src="{{ site.baseurl }}/images/dental_anatomy.png" alt="alt text" width="350px"> </center>
 
 
 
