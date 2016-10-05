@@ -43,7 +43,7 @@ For this analysis, I mainly use
 
 
 # Results and Cross Validation
-In short, one model including 4 features (income, smoking now, smoking previously, avoided food) yeilds a high classificaiton probability for each of the 32 tooth locations, in the range between 0.72 and 0.84. When interpreting the coefficients at face value, **"higher income"** is associated with a higher probability of a tooth being present in each location, while **"current smoking", "previous smoking", "avoided food", and "lower income** are associated with a lower probablity of a tooth being present (i.e., more likely to lose a tooth).  
+In short, one model including 4 features (income, smoking now, smoking previously, avoided food) yeilds a high classificaiton probability for each of the 32 tooth locations, in the range between 0.72 and 0.84. When interpreting the coefficients at face value, **"higher income"** is associated with a higher probability of a tooth being present in each location, while **"current smoking", "previous smoking", "avoided food", and "lower income"** are associated with a lower probablity of a tooth being present, that is, **higher risk of losing a tooth**.  
 
 Now, I test how well my model ("learner") can make a new prediction for data it has not already seen. For this, I use [cross validation](http://scikit-learn.org/stable/modules/cross_validation.html). As I want to use all of the data, I split the data into 70% for training and 30% for testing, and then perform 10-fold cross validation (i.e., training the model 10 times on 70% of the data and testing on 30%). 
 
