@@ -3,6 +3,8 @@ layout: post
 title: "Dental Risk Predictor"
 ---
 
+## Keeping Appointments, Keeping Healthy Smiles
+
 <left> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL2JxHKdQjNLC5WFsu-MVkCbybdOOi2fsD4gQnS44x65m72sUO" alt="alt text" width="350px"> </left>
 
 In this post, I would like to share results of my project using machine learning at [Insight Data Science](http://insightdatascience.com/), as well as discussing their usefulness in dental practice.
@@ -11,20 +13,22 @@ I am a research scientist to study [neurodevelopmental disorders](https://en.wik
 
 
 
-# A Problem Inherent in Dental Practice
+## A Problem Inherent in Dental Practice
 Dental patients often cancell or do not show up for their appointments, costing dental practices thousands of dollars. One of the reasons for cancellation or no show-up is that patients have **no perceived need**. 
 
 
 
-# A Potential Solution
-To correct this problem, dentists can proactively educate patients about potential risks for having dental problems, which will help to fill a gap between their perceived need and the actual need. To provide dentists with a tool for estimaging patients' dental risks, I built models to predict **the probability of a tooth being  present or absent** in each tooth location, based on patients' demographic and lifesylte information. The figure below illustrates the dental anatomy. Most adults have 32 teeth, including four wisdom teeth.
-
-<center> <img src="{{ site.baseurl }}/images/dental_anatomy.png" alt="alt text" width="300px"> </center>
+## A Potential Solution
+To correct this problem, dentists can proactively educate patients about **potential risks for having dental problems**, which will help to fill a gap between their perceived need and the actual need. To provide dentists with a tool for estimaging patients' dental risks, I built models to predict **the probability of a tooth being  present or absent** in each tooth location, based on patients' demographic and lifesylte information. 
 
 
-
-# Building Predictive Models 
+## Building Predictive Models 
 To solve this problem, I leverage the publicly available dataset, [National Health and Nutrition Examination Survey (NHANES)2007- 2008](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/25505). 
+
+The left figure below illustrates the dental anatomy (left), and most adults have 32 teeth, including four wisdom teeth. The right figure below summarizes the percentage (%) of adults having a permanent tooth in each location (based on the NHANES data). 
+
+<center> <img src="{{ site.baseurl }}/images/dental_distribution.png" alt="alt text" width="300px"> </center>
+
 
 **The Outcome** is a binary variable with two classes, permanent tooth "present" or "absent", in each location. 
 
@@ -42,7 +46,7 @@ For this analysis, I mainly use
 
 
 
-# Results and Cross Validation
+## Results and Cross Validation
 In short, one model including 4 features (income, smoking now, smoking previously, avoided food) yeilds a high classificaiton probability for each of the 32 tooth locations, in the range between 0.72 and 0.84. When interpreting the coefficients at face value, **"higher income"** is associated with a higher probability of a tooth being present in each location, while **"current smoking", "previous smoking", "avoided food", and "lower income"** are associated with a lower probablity of a tooth being present, that is, **higher risk of losing a tooth**.  
 
 Now, I test how well my model ("learner") can make a new prediction for data it has not already seen. For this, I use [cross validation](http://scikit-learn.org/stable/modules/cross_validation.html). As I want to use all of the data, I split the data into 70% for training and 30% for testing, and then perform 10-fold cross validation (i.e., training the model 10 times on 70% of the data and testing on 30%). 
@@ -55,7 +59,7 @@ It is worht noting here that the AUC value is relatively high for each **wisdom 
 
 
 
-# The Upcoming App
+## The Upcoming App
 
 I am now developing **an app** that allows dentists to collect patients' information to predict potential dental risks. 
 
