@@ -25,9 +25,9 @@ To correct this problem, dentists can proactively educate patients about **poten
 ## Building Predictive Models 
 To solve this problem, I leverage the publicly available dataset, [National Health and Nutrition Examination Survey (NHANES)2007- 2008](http://www.icpsr.umich.edu/icpsrweb/DSDR/studies/25505). 
 
-The left figure below illustrates the dental anatomy (left), and most adults have 32 teeth, including four wisdom teeth. The right figure below summarizes the percentage (%) of adults having a permanent tooth in each location (based on the NHANES data). 
+The left figure below illustrates the dental anatomy, and most adults have 32 teeth, including four wisdom teeth. The right figure below summarizes the percentage (%) of adults having a permanent tooth in each location (based on the NHANES data). Consistent with 
 
-<center> <img src="{{ site.baseurl }}/images/dental_distribution.png" alt="alt text" width="300px"> </center>
+<center> <img src="{{ site.baseurl }}/images/dental_distribution.png" alt="alt text" width="600px"> </center>
 
 
 **The Outcome** is a binary variable with two classes, permanent tooth "present" or "absent", in each location. 
