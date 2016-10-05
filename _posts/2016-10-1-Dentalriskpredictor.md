@@ -1,9 +1,8 @@
 ---
 layout: post
 title: "Dental Risk Predictor"
+"Keeping Appointments, Keeping Healthy Smiles"
 ---
-
-## Keeping Appointments, Keeping Healthy Smiles
 
 <left> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL2JxHKdQjNLC5WFsu-MVkCbybdOOi2fsD4gQnS44x65m72sUO" alt="alt text" width="350px"> </left>
 
