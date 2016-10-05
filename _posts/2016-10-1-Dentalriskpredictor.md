@@ -67,5 +67,6 @@ I am now developing **an app** that allows dentists to collect patients' informa
 This app can gives dentists the ability to educate and motivate patients to maintain dental visits and comply with dental treatment or prevention recommendations. Finally, **the main take-away message** in this project is that dentists should collect the information about patients' oral hygienic habits (not included in the data used in this project) to improve predictive model(s) through ongoing modifications. 
 
 
+## My Presentation 
 
-
+<center> <iframe src="http://www.slideshare.net/MakiKoyama1/slideshelf" width="615px" height="470px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:none;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe> </center>
